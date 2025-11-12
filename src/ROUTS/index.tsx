@@ -1,4 +1,3 @@
-import { createBrowserRouter } from "react-router-dom";
 import type { RouteObject } from "react-router-dom";
 import { lazy, Suspense } from "react";
 import PageLoading from "../COMP/RCOMP_pageLoadinng_V00.04";
@@ -39,7 +38,7 @@ const SuspenseWrapper = ({ children }: { children: React.ReactNode }) => (
   <Suspense fallback={<PageLoading />}>{children}</Suspense>
 );
 
-const routes: RouteObject[] = [
+export const defaultRoutes: RouteObject[] = [
   {
     path: "/",
     element: (
@@ -149,4 +148,4 @@ const routes: RouteObject[] = [
   },
 ];
 
-export default createBrowserRouter(routes);
+

@@ -1,11 +1,12 @@
-import { RouterProvider } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
-import routes from "./ROUTS/index";
+import { DynamicRouter } from "./ROUTS/dynamicRouter";
+import { DynaMan } from "./ACTR/RACT_dynaMan_V00.04";
 function App() {
+  console.log("📂 ENVI_CONS:", DynaMan.get("ENVI_CONS"));
   return (
     <>
       <HelmetProvider>
-        <RouterProvider router={routes} />
+        <DynamicRouter />
       </HelmetProvider>
     </>
   );
