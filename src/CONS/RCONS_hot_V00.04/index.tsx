@@ -1,14 +1,17 @@
 import { Helmet } from "react-helmet-async";
 
-function index() {
+
+function Index() {
+
   return (
     <>
       <Helmet>
         <title>HOT</title>
         <meta name="robots" content="noindex" />
       </Helmet>
+   
     </>
   );
 }
 
-export default index;
+export default Index;

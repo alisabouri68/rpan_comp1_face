@@ -14,36 +14,57 @@ const LoginPage: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
   const navigate = useNavigate();
+const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+  setIsLoading(true);
+  setError("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsLoading(true);
-    setError("");
+  try {
+    const response = await fetch('http://localhost:3000/api/auth/login', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email,
+        password,
+      }),
+    });
 
-    try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+    const data = await response.json();
 
-      if (email === "admin@example.com" && password === "password") {
-        localStorage.setItem("auth_token", "fake-jwt-token");
-        navigate("/dashboard");
+    if (!response.ok) {
+      // اگر خطای مربوط به تأیید ایمیل بود
+      if (response.status === 403 && data.error.includes('تأیید')) {
+        setError(data.error + ' لطفاً ایمیل خود را بررسی کنید.');
       } else {
-        setError("Invalid email or password");
+        throw new Error(data.error || 'Login failed');
       }
-    } catch (err) {
-      setError("Server connection error");
-    } finally {
-      setIsLoading(false);
+      return;
     }
-  };
 
+    // لاگین موفقیت‌آمیز
+    localStorage.setItem("auth_token", data.token);
+    localStorage.setItem("user", JSON.stringify(data.data));
+    
+    navigate("/", { 
+      state: { message: "Login successful!" } 
+    });
+
+  } catch (err: any) {
+    setError(err.message || "Login failed. Please try again.");
+  } finally {
+    setIsLoading(false);
+  }
+};
   return (
     <>
-    <Helmet>
-  <title>LOGIN</title>
-  <meta name="robots" content="noindex" />
-</Helmet>
+      <Helmet>
+        <title>LOGIN</title>
+        <meta name="robots" content="noindex" />
+      </Helmet>
 
-      <div className="w-full h-full  bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-4">
+      <div className="w-full h-full bg-gradient-to-br from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800 flex items-center justify-center p-4">
         <div className="max-w-md w-full space-y-8 p-8 rounded-xl border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm">
           {/* Header */}
           <div className="text-center">

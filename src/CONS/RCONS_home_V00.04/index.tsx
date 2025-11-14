@@ -1,6 +1,9 @@
 import { Helmet } from "react-helmet-async";
+import { DynaMan } from "../../ACTR/RACT_dynaman_V00.04";
+import { useEffect } from "react";
 
 function index() {
+ 
   return (
     <>
       <Helmet>

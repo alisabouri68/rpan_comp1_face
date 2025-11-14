@@ -19,6 +19,9 @@ import { authMiddleware } from "../PLAY/RPLAY_authService_V00.04";
 import { permissionMiddleware } from "../PLAY/RPLAY_PermissionCtrl_V00.04";
 import { ProtectedRoute } from "./ProtectedRoute";
 import { AccessDenied } from "../CONS/RCONS_accessDenied_V00.04";
+import VerifyEmail from "../CONS/RCONS_EmailVerificationPage_V00.04";
+import EmailVerificationHandler from "../CONS/RCONS_EmailVerificationHandler_V00.04";
+import VerifyEmailSuccess from "../CONS/RCONS_VerifyEmailSuccess_V00.04";
 
 // Register middlewares
 middlewareManager.register(
@@ -127,6 +130,33 @@ export const defaultRoutes: RouteObject[] = [
         handle: { layout: "mono" },
       },
       {
+        path: "/verify-email",
+        element: (
+          <SuspenseWrapper>
+            <VerifyEmail />
+          </SuspenseWrapper>
+        ),
+        handle: { layout: "mono" },
+      },
+         {
+        path: "/verify-success",
+        element: (
+          <SuspenseWrapper>
+           <VerifyEmailSuccess />
+          </SuspenseWrapper>
+        ),
+        handle: { layout: "mono" },
+      },
+            {
+        path: "/verify-email-handler",
+        element: (
+          <SuspenseWrapper>
+           <EmailVerificationHandler />
+          </SuspenseWrapper>
+        ),
+        handle: { layout: "mono" },
+      },
+      {
         path: "/access-denied",
         element: (
           <SuspenseWrapper>
@@ -147,5 +177,3 @@ export const defaultRoutes: RouteObject[] = [
     ],
   },
 ];
-
-

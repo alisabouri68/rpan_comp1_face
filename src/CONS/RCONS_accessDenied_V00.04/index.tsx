@@ -1,4 +1,3 @@
-// components/AccessDenied.tsx
 import { useLocation, useNavigate } from "react-router-dom";
 import React from "react";
 import {
@@ -10,7 +9,7 @@ import {
   FiUserX,
 } from "react-icons/fi";
 
-export const AccessDenied: React.FC = () => {
+  const AccessDenied: React.FC = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const { reason, requiredPermissions, userPermissions, missingPermissions } =
@@ -178,3 +177,4 @@ export const AccessDenied: React.FC = () => {
     </div>
   );
 };
+export default AccessDenied;

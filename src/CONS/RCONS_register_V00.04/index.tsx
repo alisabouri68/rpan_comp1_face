@@ -1,4 +1,3 @@
-// components/RegisterPage.tsx
 import React, { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import {
@@ -6,10 +5,11 @@ import {
   HiOutlineUser,
   HiOutlineMail,
   HiOutlineLockClosed,
-  HiOutlineCheck,
 } from "react-icons/hi";
 import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import { Helmet } from "react-helmet-async";
+import { absMan } from "../../ACTR/RACT_absman_V00.04";
+import { DynaMan } from "../../ACTR/RACT_dynaman_V00.04";
 
 const RegisterPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -37,27 +37,62 @@ const RegisterPage: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError("");
+    setIsLoading(true);
 
     if (formData.password !== formData.confirmPassword) {
       setError("Passwords do not match");
+      setIsLoading(false);
       return;
     }
 
     if (!formData.agreeToTerms) {
       setError("You must agree to the terms and conditions");
+      setIsLoading(false);
       return;
     }
 
-    setIsLoading(true);
-
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // دریافت API_URL از DynaMan
+      const API_URL =
+        DynaMan.get("environment.API_URL") || "http://localhost:3000/api";
 
-      // Simulate successful registration
-      localStorage.setItem("auth_token", "fake-jwt-token");
-      navigate("/dashboard");
-    } catch (err) {
-      setError("Registration failed. Please try again.");
+      const response = await fetch(`${API_URL}/auth/register`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          password: formData.password,
+          confirmPassword: formData.confirmPassword,
+        }),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || "Registration failed");
+      }
+
+      if (data.token && data.user) {
+        // استفاده از AbsMan برای ذخیره‌سازی
+        absMan.saveUserData(data.user, data.token);
+      }
+
+      // اطلاع‌رسانی به کامپوننت‌های دیگر
+      window.dispatchEvent(new Event("userLoggedIn"));
+
+      navigate("/verify-email", {
+        state: {
+          email: formData.email,
+          message: "Registration successful! Please verify your email.",
+          user: data.user,
+        },
+      });
+    } catch (err: any) {
+      setError(err.message || "Registration failed. Please try again.");
     } finally {
       setIsLoading(false);
     }
@@ -78,7 +113,7 @@ const RegisterPage: React.FC = () => {
               <HiOutlineUserAdd className="text-3xl text-white" />
             </div>
             <h2 className="mt-6 text-3xl font-bold text-gray-900 dark:text-white">
-              Create your account
+              Create Account
             </h2>
             <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
               Or{" "}

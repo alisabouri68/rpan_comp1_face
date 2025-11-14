@@ -1,29 +1,36 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { useEffect, useState } from "react";
-import type { RouteObject } from "react-router-dom";
-import { DynaMan } from "../ACTR/RACT_dynaMan_V00.04";
-import { defaultRoutes } from "./index";
+import React from "react";
+import { createBrowserRouter, RouterProvider, type RouteObject } from "react-router-dom";
+import { DynaMan } from "../ACTR/RACT_dynaman_V00.04/index";
+import { defaultRouteConfig } from "./routConfig";
+import { buildRoutes } from "./routeBuilder";
 
 export function DynamicRouter() {
-  const [router, setRouter] = useState(() => createBrowserRouter(defaultRoutes));
+  const [config, setConfig] = React.useState(defaultRouteConfig);
 
-  useEffect(() => {
-    // وقتی برنامه بار اول ران میشه، مقدار پیش‌فرض در DynaMan ذخیره شود
-    const existingRoutes = DynaMan.get("ENVI_CONS.routes");
-
-    if (!existingRoutes || existingRoutes.length === 0) {
-      DynaMan.set("ENVI_CONS.routes", defaultRoutes);
+  // subscribe به تغییرات DynaMan
+  React.useEffect(() => {
+    const existing = DynaMan.get("ENVI_CONS");
+    if (!existing || !Array.isArray(existing) || existing.length === 0) {
+      DynaMan.set("ENVI_CONS", defaultRouteConfig);
+      setConfig(defaultRouteConfig);
+    } else {
+      setConfig(existing);
     }
 
-    // subscribe به تغییرات ENVI_CONS.routes
-    const unsub = DynaMan.subscribe((newRoutes) => {
-      if (Array.isArray(newRoutes) && newRoutes.length > 0) {
-        setRouter(createBrowserRouter(newRoutes as RouteObject[]));
+    const unsub = DynaMan.subscribe((newConfig) => {
+      if (Array.isArray(newConfig) && newConfig.length > 0) {
+        setConfig(newConfig);
       }
-    }, "ENVI_CONS.routes");
+    }, "ENVI_CONS");
 
     return () => unsub();
   }, []);
+
+  const routes: RouteObject[] = React.useMemo(() => buildRoutes(config), [config]);
+
+  if (!routes || routes.length === 0) return <div>Loading routes...</div>;
+
+  const router = React.useMemo(() => createBrowserRouter(routes), [routes]);
 
   return <RouterProvider router={router} />;
 }
