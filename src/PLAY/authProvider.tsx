@@ -6,7 +6,7 @@ import Layout from '../PLAY/RPLAY_layoutCtrl_V00.04/index'
 import { login, logout } from 'RDUX/env/HybSlice'
 
 function AuthProvider ({ children }: any) {
-  const isAuth = AbsMan.useAppSelector(state => state.hyb.isAuth)
+  const isAuth = true
   const dispatch = AbsMan.useAppDispatch()
   const navigate = useNavigate()
   const Login = () => {
@@ -38,3 +38,4 @@ function AuthProvider ({ children }: any) {
 }
 
 export default AuthProvider
+
