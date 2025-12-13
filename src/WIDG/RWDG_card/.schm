@@ -1,0 +1,19 @@
+---glan11
+
+>>> Def-COMP				//? Defining Component
+  # meta					kerID			"Actor"									 
+	. model-id:				RCMP_card
+	. model-title:			"RCMP_card"
+	. model-version:		V00.03			/// 
+	. model-lastUpgrade:	D2024.09.25		      					
+	. model-owner			Apps48
+
+	. model-type			Mutage	      							
+	. origin-model			MODL								
+	. origin-model-Ver		00.00
+	. model-desc			Description	     	
+
+
+
+
+->>

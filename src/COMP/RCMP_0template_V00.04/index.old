@@ -1,0 +1,481 @@
+
+
+/******************************************
+BioWidget Templates
+
+Last Update:    2025.04.03
+By:             SMRT.00
+
+Description:  This templates is used for developing React Bio-Components according to Dyna-Modeling Architecture
+******************************************/
+
+
+
+/*------------------------------------------------------------
+Meta Data
+
+ID:             RCOM_template 
+Title:          Component Template - React Version
+Version:        V00.04
+VAR:            01 (remarks ....)
+
+last-update:    D2025.04.04
+owner:          SMRT.00
+
+Description:    Here ...
+
+------------------------------------------------------------*/
+
+
+
+ /**************************************
+  * Step 01 import dependencies - kernels
+  **************************************/
+
+ import  { useState, useEffect, useContext , useMemo} from 'react';
+ import {EnviGlob,EnviAuth, ... } from "./Context";
+ 
+
+ /**************************************
+  * Step.02:    import dependency - widgets
+  **************************************/
+ 
+
+ import MicroWidg.formControl.microButton from "../M_WIDGs";  // i.e. mWidg01 = microButton
+ import MicroWidg.formControl.microButton from "../M_WIDGs";
+ import MicroWidg.formControl.microButton from "../M_WIDGs";
+  
+
+
+
+ /**************************************
+  * Step.03:    co-actor dependencies
+  **************************************/
+
+import {AuthProvider} from "src/Lib/Dyna/AuthProvider";
+import {SrvSetProvider} from "src/Lib/Dyna/SrvSetProvider";
+import {GlobeProvider} from "src/Lib/Dyna/GlobeProvider";
+
+
+
+
+
+  /**************************************
+   * Step 04 - define properties - Static
+   * 
+   * assignment:
+   * 
+   *    1- static assign    (glan Syntax - a:5      )   a=5
+   *    2- set a            (glan Syntax - a:b      )   a=b
+   *    3- a follow b       (glan Syntax - a<<b     )   Hook (Read)
+   *                                    if b plug:
+   * 
+   *                                    if b is envi var:
+   * 
+   * 
+   *    4- bind a , b       (glan Syntax - a=b      )   Hook (Read-Write)
+   *                                    if b plug:
+   * 
+   *                                    if b is envi var:
+   * 
+   * 
+   **************************************/
+ 
+ 
+
+ 
+ 
+   /**************************************
+   * Step 05 - define properties for this BioWidget
+   **************************************/
+ 
+ 
+
+ 
+ interface Props {
+ 
+     geo: {
+         width?: 		Tailwindest["width"],
+         height?: 		Tailwindest["height"],
+         iconWidth?: 	Tailwindest["width"],
+         iconHeight?: 	Tailwindest["height"],
+         bG01:			number   					//type = number
+         bG02:			number   					//type = number
+         bG03:			number   					//type = number
+         bG04:			number   					//type = number
+     },
+ 
+     logic: {
+ 
+         mode?: 		"text" | "search" | "tel" | "password" | "number" | "email" | "date"
+                  | "datetime-local" | "month" | "time" | "week"
+ 
+         name?: 			string,
+         placeholder?: 	string,
+         icon?: 			string | null,
+         onChange?: 		ChangeEventHandler,
+         value?: 		string,
+         disabled?: 		boolean
+ 
+         bL01:			string   					//Constant Number - no need for state
+         bL02:			string   	  				// or Envi - Var
+         bL03:			string   					// or Plug
+         bL04:			string   					//
+ 
+     },
+ 
+ 
+ 
+     style: {
+         iconPosition?:		"right" | "left",
+         iconColor?: 		Tailwindest["color"],
+ 
+         fontSize?: 			Tailwindest["fontSize"],
+         textColor?: 		Tailwindest["color"],
+         borderWidth?: 		Tailwindest["borderWidth"],
+         borderColor?: 		Tailwindest["borderColor"],
+         borderRadius?: 		Tailwindest["borderRadius"],
+         backgroundColor?:	Tailwindest["backgroundColor"],
+         focusRingColor?:	string,
+         focusBorderColor?:	string,
+     },
+ }
+ 
+   /**************************************
+   * Step 06 - Class Component should be defined
+   *
+   **************************************/
+ 
+  /**************************************
+   * Step 06 - assignments for this BioWidget
+   *	assignments will be filled at form-builder 
+   *	
+   *		we have 6 type of Bindings
+   *			1- S:       static
+   *			2- EnvR:    Envi Read
+   *			3- EnvRW:   Envi Read and Write
+   *			4- PlugR:   Plug Read
+   *			5- PlugRW:  Plug Read and write
+   *			6- PlugC:   Plug Controllers Configure
+   *
+   **************************************/
+ 
+ 
+         // 1- Type S (Static Assignment)
+         
+
+
+         // Note: for better efficienct we put all static assingment inside step 
+
+             const bWidg1.S1= "34";
+             const DEFAULT_HEIGHT = 8;
+ 
+         // 2- Type EnvR (Envi Read - Read from Envi's)
+         //			All Envi's are Readable:
+         //				globe, auth, profile, console, bundle and convas
+         
+             const {globEnvi} = useGlob(); 
+ 
+             //when globEnvi.par01 is changed, then bs02 will be changed and re-render
+             bS02 = useMemo ( ()=> {	return globEnvi.par01;} , {globEnvi.par01})
+ 
+ 
+         // 3- Type EnvRW (Envi Read and Write - Read or Write from Envi's)
+         //			Writable Envi's are:
+         //				globe, auth, profile, console, bundle and convas
+ 
+ 
+             const {globEnvi, changeGlobEnvi}= useGlob ();
+             const {bs02, setBs02} = useState(globEnvi.par01);
+ 
+             //when bs02 is changed, then globEnvi.par01 will be changed and re-render
+             useEffect ( () => { changeGlobEnvi (par01, bs02); }, [bs02] );
+ 
+             //when globEnvi.par01 is changed, then bs02 will be changed and re-render
+             useEffect ( () => { setBs02(globEnvi.par01); } , [globEnvi.par01] );
+ 
+ 
+         // for plugs we have 7 CRUD functions:
+         // 		1- index	--> plug read	--> Controls: sort, filter, pageNum, parent-machSer
+         // 		2- show		--> plug read	--> Controls: machSer (machine Serial-hidden)
+         // 		3- create	--> not needed
+         // 		4- store	--> plug write	--> Controls: machSer 
+         // 		5- edit		--> not needed
+         // 		6- update	--> plug write	--> Controls: machSer 
+         // 		7- distroy	--> plug write	--> Controls: machSer 
+ 
+ 
+         // 4- Type PlugR (Plug Read - read from PlugSet inside SrvSet(n) Context)
+         
+             const {getPlugSet} = useSrvSet();
+             
+             //   @@@@@@@@@@@@@  when 
+             const bs05= useMemo( () => {
+                 return getPlugSet ( "convas1" , "plug12", "index", controller.machSer );
+             }, [ plugSet?.convas1?.plug12] );
+             
+ 
+ 
+ 
+         // 5- Type PlugRW: Plug Read and write - read or write to PlugSet inside SrvSet(n) Context)
+ 
+             const {plugSet, getPlugSet, updatePlugSet} = useSrvSet();
+ 
+             const {bs05 , setBs05} = useState(plugSet.convas1.plug12);
+ 
+             //when
+             useEffect ( () => {
+                 setBs05 (getPlugSet ("convas1" , "plug12", "index", controller.machSer)) 
+             }, [plugSet?.conv01?.plug12] )
+ 
+             const onChangeData = (index, key, value) => {
+                 const a = cloneObject(bs05);
+                 a[index][key] = value;
+                 setBs05(a);
+                 updatePlugSet(convas1, plug12 , a[index].id , key, value);
+             }
+ 
+ 
+         // 6- Type PlugC: Plug Controllers
+             // this sample will controll page size of index result pagination
+             // we can state any controller we want like page, pageSize, search Query and ...
+             // in this example we state pageSize that user can change it by dropdown or any form control
+ 
+ 
+             // controller funciton:
+             //  - machineSer  (Show)
+             //  - filter   (1- simple)
+             //          
+             //  - sort  (1-assendng/decesnding   2-filed1 then field2 then field3)
+             //  - pageSize / pageNum
+             //
+ 
+ 
+ 
+             const [pageSize, setPageSize] = useState(10);
+             const {plugSet, getPlugSet, updatePlugSet} = useSrvSet();
+             
+             // on page size change with drop down or any form controll or widget, the results will reload in plugset
+             const results = useMemo(() => {
+                 return getPlugSet ("convas1" , "plug12", "index", {pageSize: pageSize})
+             }, [pageSize]);
+ 
+ 
+  /**************************************
+   * Step 04 - Logic - for manual coding in this BioWidget
+   **************************************/
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  /**************************************
+   * Step 05 - Assignment - Assign variable and values to each param of MicroWidget
+   * *************************************
+   * This step will be done at the Widget-maker
+   * 
+   * Note: we have three types of assignment
+   * 
+   * 	1- S: Static Assignment - 
+   * 
+   * 	2- R: Read Assignment - Change when the source Bio-parameter is changed
+   * 
+   * 	3- RW: Read/Write Assignment - Change when the sourced is change and can change the source
+   * 
+   **************************************/
+ 
+         // Type S (Static Assignment)
+         
+         mWidg01.S1= "4";
+         
+         
+         // Type R (Read Assignment - read from Bio Param)
+ 
+         mWidg04.L5= useMemo ( ( ) => {
+             return bLogic5;
+         } , [bLogic5] );
+ 
+         
+         
+         // Type RW (Read and Write Assignment - read and write from Bio Param - BioParam Can be a static or interWidget-State-Var or outerWidget-Context-var )
+         
+         cons [mLogic3. setMLogic3] = useState(bLogic7);
+         
+         //if bLogic7 is changed, then mLogic3 will be changed and re-render
+         useEffect(() => {
+             if(bLogic7 != mLogic3)
+                 setMLogic3(bLogic7);
+         }, [bLogic7]);
+         
+         //if mLogic3 is changed, then bLogic7 will be changed and re-render
+         useEffect(() => {changeBParam(bLogic7, mLogic3);}, [mLogic3]);
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+  /**************************************
+   * Step 06 - Micro Widget Arrangement
+   **************************************/
+ 
+     return (
+ 
+         <div id="container" className='mb-5' style={{ height }}>
+             {
+                 domRect							// domRect is a state 
+                 ? (
+                 <>
+ 
+                 // Micro-Widget 1
+ 
+                 <div style={{
+                     position: 			"absolute",
+                     width: 				45 * domRect?.w,
+                     height: 			7 * DEFAULT_HEIGHT,
+                     top: 				((0 + 1) * DEFAULT_HEIGHT) + domRect?.offsetTop,
+                     left: 				((2) * domRect?.w) + domRect?.offsetLeft
+                 }}>
+                     <MWidg.Container.microGroup.component {...
+ 
+                       {"geometric":{
+                         "width":		"w-full",
+                         "height":		"h-full",
+                         "iconWidth":	"w-4",
+                         "iconHeight":	"h-4"},
+ 
+                       "logic":{
+                         "icon":			"TextBold",
+                         "lable":		"sort",
+                         "disabled":		false},
+ 
+                       "style":{
+                         "iconPosition":	"left",
+                         "fontSize":		"text-sm",
+                         "fontWeight":	"font-medium",
+                         "textColor":	"text-white",
+                         "borderRadius":	"rounded-md",
+                         "backgroundColor":"bg-blue-700"}
+                       }
+                     } 
+ 
+                 </div>
+ 
+ 
+ 
+                 // Micro-Widget 2
+ 
+                 <div style={{
+                     position: 			"absolute",
+                     width: 				9 * domRect?.w,
+                     height: 			6 * DEFAULT_HEIGHT,
+                     top: 				((1 + 1) * DEFAULT_HEIGHT) + domRect?.offsetTop,
+                     left: 				((2) * domRect?.w) + domRect?.offsetLeft
+                 }}>
+ 
+ 
+ 
+                 <MWidg.Container.microInput.component {...
+ 
+                 {
+                   "geometric":{
+                     "width":			"w-full",
+                     "height":			"h-full",
+                     "iconWidth":		"w-4",
+                     "iconHeight":		"h-4"},
+ 
+                   "logic":{
+                     "icon":				"TextBold",
+                     "lable":			"sort",
+                     "disabled":			false},
+ 
+                   "style":{
+                     "iconPosition":		"left",
+                     "fontSize":			"text-sm",
+                     "fontWeight":		"font-medium",
+                     "textColor":		"text-white",
+                     "borderRadius":		"rounded-md",
+                     "backgroundColor":	"bg-blue-700"}
+                 }
+                 
+                 } />
+                 </div>
+ 
+ 
+ 
+                 // Micro-Widget 3
+ 
+                 <div style={{
+                     position: 			"absolute",
+                     width: 				9 * domRect?.w,
+                     height: 			6 * DEFAULT_HEIGHT,
+                     top: 				((1 + 1) * DEFAULT_HEIGHT) + domRect?.offsetTop,
+                     left: 				((38) * domRect?.w) + domRect?.offsetLeft
+                 }}>
+                 <MWidg.formControl.microButton.component {...
+ 
+                   {"geometric":{
+                     "width":"w-full",
+                     "height":"h-full",
+                     "iconWidth":"w-4",
+                     "iconHeight":"h-4"},
+ 
+                   "logic":{
+                     "icon":"TextBold",
+                     "lable":"sort",
+                     "disabled":false},
+ 
+                   "style":{
+                     "iconPosition":"left",
+                     "fontSize":"text-sm",
+                     "fontWeight":"font-medium",
+                     "textColor":"text-white",
+                     "borderRadius":"rounded-md",
+                     "backgroundColor":"bg-blue-700"}
+                   }
+                 } />
+                 </div>
+ 
+ 
+                 </>
+                 ): null
+             }
+         </div >
+     )
+ 
+ 
+ 
+ 
+ 
+  /**************************************
+   * Step 07 - Export total Pack
+   **************************************/
+ 
+ export default BioWidget
+ 
+ 

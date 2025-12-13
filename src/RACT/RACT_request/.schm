@@ -1,0 +1,20 @@
+---glan11
+
+
+>>> Def-ACTR				//? Defining Actor
+
+# meta					    ACTR			"Actor"									 
+    . model-id:				RACT_absMan
+    . model-title:			"RACT_absMan"
+    . model-version:		V00.03			/// 
+    . model-lastUpgrade:	D2024.09.25		      					
+    . model-owner			APPS48
+
+    . model-type			Mutage	      							
+    . origin-model			MODL								
+    . origin-model-Ver		00.00
+    . model-desc			Description	     	
+
+
+
+---

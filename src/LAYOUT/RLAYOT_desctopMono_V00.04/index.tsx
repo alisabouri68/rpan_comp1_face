@@ -1,26 +1,26 @@
-import { Outlet } from "react-router-dom";
-import Box_header from "../../BOXS/RBOX_header_V00.04";
-import Box_navigation from "../../BOXS/RBOX_navigation_V00.04";
+import Box_header from '../../BOX/BOX_header'
+import Box_navigation from '../../BOX/BOX_nav'
+import { ReactNode } from 'react'
 
-function DesktopLayout() {
+function DesktopLayout ({ children }: { children: ReactNode }) {
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className='flex flex-col min-h-screen bg-gray-50 dark:bg-gray-900 w-full'>
       <Box_header />
 
-      <div className="flex flex-1">
-        <div className="w-20 flex-shrink-0 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 shadow-sm">
+      <div className='flex p-1 w-full'>
+        <div
+          style={{ height: 'calc(100vh - 90px)' }}
+          className='w-20  bg-white rounded-xl shadow-md '
+        >
           <Box_navigation />
         </div>
 
         {/* Main Content */}
-        <div className="flex-1 p-3">
-          <div className="flex h-full gap-2">
-            <Outlet />
-          </div>
-        </div>
+
+        <div className='flex h-full gap-2 p-1 w-full'>{children}</div>
       </div>
     </div>
-  );
+  )
 }
 
-export default DesktopLayout;
+export default DesktopLayout

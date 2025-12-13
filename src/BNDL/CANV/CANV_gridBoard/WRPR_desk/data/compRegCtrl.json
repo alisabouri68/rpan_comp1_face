@@ -1,0 +1,41 @@
+{
+  "success": true,
+  "message": "",
+  "object": {
+    "_id": "691f37b9cba8a5248fac8701",
+    "id": "test",
+    "title": "test",
+    "description": "test",
+    "icon": "Box",
+    "group": {
+      "_id": "691f37a8cba8a5248fac86f9",
+      "id": "default",
+      "title": "default",
+      "description": "default",
+      "createdBy": "691f36ee759e18f792739445",
+      "deleted": false,
+      "createdAt": "2025-11-20T15:45:44.444Z",
+      "updatedAt": "2025-11-20T15:45:44.444Z",
+      "__v": 0
+    },
+    "status": "Release",
+    "version": "V00.04",
+    "schema": "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",
+    "createdBy": {
+      "_id": "691f36ee759e18f792739445",
+      "email": "admin@bionet.com",
+      "name": "bionet",
+      "status": "Active"
+    },
+    "deleted": false,
+    "createdAt": "2025-11-20T15:46:01.356Z",
+    "updatedAt": "2025-12-03T16:24:32.036Z",
+    "__v": 0,
+    "updatedBy": {
+      "_id": "691f36ee759e18f792739445",
+      "email": "admin@bionet.com",
+      "name": "bionet",
+      "status": "Active"
+    }
+  }
+}

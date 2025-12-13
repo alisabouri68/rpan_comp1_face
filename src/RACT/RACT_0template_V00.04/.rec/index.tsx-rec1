@@ -1,0 +1,142 @@
+
+
+/******************************************
+Actor Index file Templates
+
+Last Update:    2025.08.11
+By:             APPS.00
+
+Description:  This templates is used for developing React Actors based on V00.04
+******************************************/
+
+
+
+// ************************************
+Meta Data
+/*------------------------------------------------------------
+
+ID:             RACT_template 
+Title:          Actor Template - React Version
+Version:        V00.04
+VAR:            01 (remarks ....)
+
+last-update:    D2025.08.11
+owner:          APPS.00
+
+Description:    Here ...
+
+------------------------------------------------------------*/
+
+
+
+// ************************************
+ * Step 01 import dependencies - kernels
+/**************************************
+
+ 
+import { useDispatch, useSelector } from "react-redux";
+import { AppDispatch, RootState } from "RDUX/store";
+
+import Dimentions from "./template/dimensions";
+import lodash from "lodash";
+import lz from "lz-string";
+
+
+
+ **************************************/
+ 
+ 
+ 
+// ************************************
+ * Step.02: import dependencies - co-actors 
+ /**************************************
+ 
+ 
+ import { plug } from "/src/ACTR/RACT_plug_V00.04";
+ import { regio } from "/src/ACTR/RACT_regio_V00.04";
+ import { act1 } from "/src/ACTR/RACT_act1_V00.04";
+ 
+  **************************************/
+ 
+ 
+ // ************************************
+ * Step.03: import dependencies - xapp s
+ /**************************************
+ 
+ 
+ import { xapp1 } from "/src/XAPP/RXAP_xapp1_V00.04";
+ import { xapp2 } from "/src/XAPP/RXAP_xapp2_V00.04";
+ import { xapp3 } from "/src/XAPP/RXAP_xapp3_V00.04";
+ 
+  **************************************/
+ 
+ 
+ // ************************************
+ * Step.04: Envi Setups
+ /**************************************
+ 
+ /// packet gVar - creating envi variables (access to envi only by KRNL_absMan)
+ 
+ 
+ 
+ 
+ 
+   **************************************/
+ 
+ 
+ 
+ 
+ 
+ // ************************************
+ * Step.05: Class Definition
+ /**************************************
+ class actorID {
+ 
+    constructor(nttStructure: any = null) {
+      this._NTT = nttStructure ?? structuredClone(DEFAULT_SCHM);
+      this._serial = nttStructure?.serial ?? this.generateVersion();
+    }
+
+ 
+    //  @returns
+
+    public serialize() {
+      return lz.compressToBase64(this.stringify());
+    }
+
+ 
+   //  @returns
+
+    public stringify() {
+      return JSON.stringify(this, (_, value) => {
+        if (value && value instanceof AbsMan) {
+          //@ts-ignore
+          value.__type = value.constructor.name;
+        }
+        return value;
+      });
+    }
+ 
+ 
+ 
+ 
+ /// packets mVar - creating inside the class
+ 
+ 
+
+ 
+ 
+ /// script setup 
+ 
+ 
+		/// Script Group 1 - default functions
+ 
+ 
+ 		/// Script Group 2 - Second function groups
+ 
+ 
+ 		/// Script Group 3 - Third function groups
+ }
+
+export default actorID;
+  **************************************/

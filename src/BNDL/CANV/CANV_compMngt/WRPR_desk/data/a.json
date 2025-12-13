@@ -1,0 +1,602 @@
+{
+  "_NTT": {
+    "meta": {
+      "id": "test",
+      "title": "test",
+      "version": "V00.04",
+      "lastUpdate": "",
+      "owner": "",
+      "type": "",
+      "description": "test",
+      "absManVersion": "0.1"
+    },
+    "para": {
+      "meta": {
+        "axis": "mVar",
+        "title": "para",
+        "description": "para"
+      },
+      "title": {
+        "meta": {
+          "title": "title",
+          "description": "title"
+        },
+        "order": 1,
+        "config": {
+          "id": "",
+          "widget": "input",
+          "defVal": "",
+          "reset": true,
+          "view": true,
+          "icon": true,
+          "changeScale": true,
+          "editable": true,
+          "array": [],
+          "language": [],
+          "validation": [],
+          "validtime": [],
+          "format": [],
+          "unit": [],
+          "subunit": [],
+          "scaleOp": [],
+          "furmula": []
+        },
+        "edit": {
+          "value": "Bio Component",
+          "reset": true,
+          "picker": ""
+        },
+        "class": "single",
+        "dimension": "string"
+      },
+      "mood": {
+        "meta": {
+          "title": "mood",
+          "description": "mood"
+        },
+        "order": 2,
+        "config": {
+          "id": "",
+          "widget": "input",
+          "defVal": "",
+          "reset": true,
+          "view": true,
+          "icon": true,
+          "changeScale": true,
+          "editable": true,
+          "array": [],
+          "language": [],
+          "validation": [],
+          "validtime": [],
+          "format": [],
+          "unit": [],
+          "subunit": [],
+          "scaleOp": [],
+          "furmula": []
+        },
+        "edit": {
+          "value": "assign",
+          "reset": true,
+          "picker": ""
+        },
+        "class": "single",
+        "dimension": "string"
+      },
+      "border": {
+        "meta": {
+          "title": "border",
+          "description": "border"
+        },
+        "order": 3,
+        "config": {
+          "reset": true,
+          "id": "",
+          "view": true,
+          "icon": true,
+          "widget": "dropdown",
+          "defVal": "",
+          "array": [],
+          "language": [],
+          "validation": [],
+          "validtime": [],
+          "format": [],
+          "changeScale": true,
+          "scaleOp": [],
+          "editable": true,
+          "furmula": [],
+          "optionList": [],
+          "grDependancy": ""
+        },
+        "edit": {
+          "value": false,
+          "reset": true,
+          "picker": ""
+        },
+        "class": "option",
+        "dimension": "boolean"
+      },
+      "draggable": {
+        "meta": {
+          "title": "draggable",
+          "description": "draggable"
+        },
+        "order": 4,
+        "config": {
+          "reset": true,
+          "id": "",
+          "view": true,
+          "icon": true,
+          "widget": "dropdown",
+          "defVal": "",
+          "array": [],
+          "language": [],
+          "validation": [],
+          "validtime": [],
+          "format": [],
+          "changeScale": true,
+          "scaleOp": [],
+          "editable": true,
+          "furmula": [],
+          "optionList": [],
+          "grDependancy": ""
+        },
+        "edit": {
+          "value": true,
+          "reset": true,
+          "picker": ""
+        },
+        "class": "option",
+        "dimension": "boolean"
+      },
+      "addable": {
+        "meta": {
+          "title": "addable",
+          "description": "addable"
+        },
+        "order": 5,
+        "config": {
+          "reset": true,
+          "id": "",
+          "view": true,
+          "icon": true,
+          "widget": "dropdown",
+          "defVal": "",
+          "array": [],
+          "language": [],
+          "validation": [],
+          "validtime": [],
+          "format": [],
+          "changeScale": true,
+          "scaleOp": [],
+          "editable": true,
+          "furmula": [],
+          "optionList": [],
+          "grDependancy": ""
+        },
+        "edit": {
+          "value": true,
+          "reset": true,
+          "picker": ""
+        },
+        "class": "option",
+        "dimension": "boolean"
+      }
+    },
+    "Geometric": {
+      "meta": {
+        "axis": "mVar",
+        "title": "Geometric",
+        "description": "Geometric"
+      },
+      "i": {
+        "meta": {
+          "title": "i",
+          "description": "i"
+        },
+        "order": 1,
+        "config": {
+          "id": "",
+          "widget": "input",
+          "defVal": "",
+          "reset": true,
+          "view": true,
+          "icon": true,
+          "changeScale": true,
+          "editable": true,
+          "array": [],
+          "language": [],
+          "validation": [],
+          "validtime": [],
+          "format": [],
+          "unit": [],
+          "subunit": [],
+          "scaleOp": [],
+          "furmula": []
+        },
+        "edit": {
+          "value": "",
+          "reset": true,
+          "picker": ""
+        },
+        "class": "single",
+        "dimension": "string"
+      },
+      "x": {
+        "meta": {
+          "title": "x",
+          "description": "x"
+        },
+        "order": 2,
+        "config": {
+          "reset": true,
+          "id": "",
+          "view": true,
+          "icon": true,
+          "widget": "input",
+          "defVal": "",
+          "array": [],
+          "language": [],
+          "validation": [],
+          "validtime": [],
+          "format": [],
+          "changeScale": true,
+          "unit": [],
+          "subunit": [],
+          "scaleOp": [],
+          "editable": true,
+          "furmula": []
+        },
+        "edit": {
+          "value": 0,
+          "reset": true,
+          "picker": ""
+        },
+        "class": "single",
+        "dimension": "integer"
+      },
+      "y": {
+        "meta": {
+          "title": "y",
+          "description": "y"
+        },
+        "order": 3,
+        "config": {
+          "reset": true,
+          "id": "",
+          "view": true,
+          "icon": true,
+          "widget": "input",
+          "defVal": "",
+          "array": [],
+          "language": [],
+          "validation": [],
+          "validtime": [],
+          "format": [],
+          "changeScale": true,
+          "unit": [],
+          "subunit": [],
+          "scaleOp": [],
+          "editable": true,
+          "furmula": []
+        },
+        "edit": {
+          "value": 0,
+          "reset": true,
+          "picker": ""
+        },
+        "class": "single",
+        "dimension": "integer"
+      },
+      "width": {
+        "meta": {
+          "title": "width",
+          "description": "width"
+        },
+        "order": 4,
+        "config": {
+          "reset": true,
+          "id": "",
+          "view": true,
+          "icon": true,
+          "widget": "input",
+          "defVal": "",
+          "array": [],
+          "language": [],
+          "validation": [],
+          "validtime": [],
+          "format": [],
+          "changeScale": true,
+          "unit": [],
+          "subunit": [],
+          "scaleOp": [],
+          "editable": true,
+          "furmula": []
+        },
+        "edit": {
+          "value": 100,
+          "reset": true,
+          "picker": ""
+        },
+        "class": "single",
+        "dimension": "integer"
+      },
+      "height": {
+        "meta": {
+          "title": "height",
+          "description": "height"
+        },
+        "order": 5,
+        "config": {
+          "reset": true,
+          "id": "",
+          "view": true,
+          "icon": true,
+          "widget": "input",
+          "defVal": "",
+          "array": [],
+          "language": [],
+          "validation": [],
+          "validtime": [],
+          "format": [],
+          "changeScale": true,
+          "unit": [],
+          "subunit": [],
+          "scaleOp": [],
+          "editable": true,
+          "furmula": []
+        },
+        "edit": {
+          "value": 100,
+          "reset": true,
+          "picker": ""
+        },
+        "class": "single",
+        "dimension": "integer"
+      },
+      "rotate": {
+        "meta": {
+          "title": "rotate",
+          "description": "rotate"
+        },
+        "order": 6,
+        "config": {
+          "reset": true,
+          "id": "",
+          "view": true,
+          "icon": true,
+          "widget": "input",
+          "defVal": "",
+          "array": [],
+          "language": [],
+          "validation": [],
+          "validtime": [],
+          "format": [],
+          "changeScale": true,
+          "unit": [],
+          "subunit": [],
+          "scaleOp": [],
+          "editable": true,
+          "furmula": []
+        },
+        "edit": {
+          "value": 0,
+          "reset": true,
+          "picker": ""
+        },
+        "class": "single",
+        "dimension": "integer"
+      },
+      "zIndex": {
+        "meta": {
+          "title": "zIndex",
+          "description": "zIndex"
+        },
+        "order": 7,
+        "config": {
+          "reset": true,
+          "id": "",
+          "view": true,
+          "icon": true,
+          "widget": "input",
+          "defVal": "",
+          "array": [],
+          "language": [],
+          "validation": [],
+          "validtime": [],
+          "format": [],
+          "changeScale": true,
+          "unit": [],
+          "subunit": [],
+          "scaleOp": [],
+          "editable": true,
+          "furmula": []
+        },
+        "edit": {
+          "value": 0,
+          "reset": true,
+          "picker": ""
+        },
+        "class": "single",
+        "dimension": "integer"
+      },
+      "groupId": {
+        "meta": {
+          "title": "groupId",
+          "description": "groupId"
+        },
+        "order": 8,
+        "config": {
+          "id": "",
+          "widget": "input",
+          "defVal": "",
+          "reset": true,
+          "view": true,
+          "icon": true,
+          "changeScale": true,
+          "editable": true,
+          "array": [],
+          "language": [],
+          "validation": [],
+          "validtime": [],
+          "format": [],
+          "unit": [],
+          "subunit": [],
+          "scaleOp": [],
+          "furmula": []
+        },
+        "edit": {
+          "value": "",
+          "reset": true,
+          "picker": ""
+        },
+        "class": "single",
+        "dimension": "string"
+      },
+      "name": {
+        "meta": {
+          "title": "name",
+          "description": "name"
+        },
+        "order": 9,
+        "config": {
+          "id": "",
+          "widget": "input",
+          "defVal": "",
+          "reset": true,
+          "view": true,
+          "icon": true,
+          "changeScale": true,
+          "editable": true,
+          "array": [],
+          "language": [],
+          "validation": [],
+          "validtime": [],
+          "format": [],
+          "unit": [],
+          "subunit": [],
+          "scaleOp": [],
+          "furmula": []
+        },
+        "edit": {
+          "value": "test",
+          "reset": true,
+          "picker": ""
+        },
+        "class": "single",
+        "dimension": "string"
+      },
+      "isHidden": {
+        "meta": {
+          "title": "isHidden",
+          "description": "isHidden"
+        },
+        "order": 10,
+        "config": {
+          "id": "",
+          "widget": "dropdown",
+          "defVal": "",
+          "grDependancy": "",
+          "reset": true,
+          "view": true,
+          "icon": true,
+          "changeScale": true,
+          "editable": true,
+          "array": [],
+          "language": [],
+          "validation": [],
+          "validtime": [],
+          "format": [],
+          "scaleOp": [],
+          "furmula": [],
+          "optionList": [
+            true,
+            false
+          ]
+        },
+        "edit": {
+          "value": false,
+          "reset": true,
+          "picker": ""
+        },
+        "class": "option",
+        "dimension": "freeStyle"
+      }
+    },
+    "Dimensions": {
+      "meta": {
+        "axis": "mVar",
+        "title": "",
+        "description": ""
+      },
+      "width": {
+        "meta": {
+          "title": "",
+          "description": ""
+        },
+        "order": 1,
+        "config": {
+          "reset": true,
+          "id": "",
+          "view": true,
+          "icon": true,
+          "widget": "input",
+          "defVal": "",
+          "array": [],
+          "language": [],
+          "validation": [],
+          "validtime": [],
+          "format": [],
+          "changeScale": true,
+          "unit": [],
+          "subunit": [],
+          "scaleOp": [],
+          "editable": true,
+          "furmula": []
+        },
+        "edit": {
+          "value": 600,
+          "reset": true,
+          "picker": ""
+        },
+        "class": "single",
+        "dimension": "integer"
+      },
+      "height": {
+        "meta": {
+          "title": "",
+          "description": ""
+        },
+        "order": 2,
+        "config": {
+          "reset": true,
+          "id": "",
+          "view": true,
+          "icon": true,
+          "widget": "input",
+          "defVal": "",
+          "array": [],
+          "language": [],
+          "validation": [],
+          "validtime": [],
+          "format": [],
+          "changeScale": true,
+          "unit": [],
+          "subunit": [],
+          "scaleOp": [],
+          "editable": true,
+          "furmula": []
+        },
+        "edit": {
+          "value": 600,
+          "reset": true,
+          "picker": ""
+        },
+        "class": "single",
+        "dimension": "integer"
+      }
+    }
+  },
+  "_saved": true,
+  "_serial": 8945583752,
+  "__type": "Ht"
+}

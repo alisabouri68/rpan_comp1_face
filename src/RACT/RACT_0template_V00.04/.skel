@@ -1,0 +1,77 @@
+---glan11
+
+
+///   Template for all .skell for Actors
+
+
+/// ---------------------------------------
+/// model:              Actor_template_V00.04
+/// last update:        D2025.08.22
+/// by:                 APPS.00
+/// ---------------------------------------
+
+
+
+>>> ID
+
+	/// Step 1 - Meta Define
+
+	# meta 										
+
+		. genix-id:			"actorID"				/// mandatory - Geneix ID
+		. genix-title:		"Actor Title"			/// optional - default=id
+		. genix-version:	"V00.04"				/// same as origin model version 
+		. genix-scat		"RACT"					/// Geneix SCAT is the same as the model it is building from	
+
+		. genix-lastUpgrade	"D2025.08.11"
+		. genix-developer	"APPS00"
+		
+		. bioModel-id:		"ACTR"					/// Original Bio-Model
+		. bioModel-ver:		"V00.04"				/// 
+		. genix-rem:		"template for Skeleton"	
+
+-->
+
+
+>>> MNGT
+
+	@ builder (1)
+		.#packet1 
+		.	. field112
+		.$build-asst-1 -par: "@this.#builder.field112" -opt {}
+		.$build-asst-2 -par: -opt { }
+
+
+
+-->
+
+
+>>> Body
+
+
+	/// Step.02 - List of Assets (only dynamic asset in V00.04)
+
+	# asset (1)
+	.id:				".schm"					/// Scheme file
+	.url:				"/"
+	.dynamic:			"FALSE"
+
+	# asset (2)
+	.id:				".skel"					/// Skeletone file
+	.url:				"/"
+	.dynamic:			"FALSE"
+
+	# asset (3)
+	.id:				"index.tsx"				/// Index file
+	.url:				"/"
+	.dynamic:			"FALSE"
+
+
+	/// Step.03 - No Capsule allowed inside the Actor
+
+
+
+-->
+
+
+---

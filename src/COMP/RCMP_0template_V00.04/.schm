@@ -1,0 +1,318 @@
+---glan11
+
+
+
+/// ---------------------------------------
+/// model:              COMP_template_V00.04
+/// last update:        D2025.08.11
+/// by:                 APPS.00
+/// ---------------------------------------
+
+
+
+>>> ID															//? Definition for COMP
+
+    /// step.01 -  Complete Meta Data
+
+    # meta
+        . model_id:					"compID"
+        . model_title:				"Component Title"
+        . model_version:			"V00.04"
+        . model_lastUpgrade:		"D2025.07.00"				/// use the header date
+        . model_owner				"smrt00"
+
+        . model_type				"Instant"
+        . origin_model				"COMP"						/// Component Mutage Model
+        . origin_model_Ver			"00.04"
+        . model_rem					"Component Remarks here ... "	
+
+	/// Objectives:
+
+	///	1- Template Making for all Component Models
+
+	///	2-
+
+	///	3-
+
+
+
+-->
+
+
+>>> MNG
+
+
+	/// step.02 -  Management - Render
+
+	# render(1)													//? React Render Mngt.
+		. scat:						"RCMP"						/// React Template
+		. langBase:					"react"						/// description
+
+
+	# render(2)							 						//? Reference Render Mngt.
+		. scat:						"LITE"						/// Litrature Template
+		. langBase:					"reachtex"					/// description
+
+
+    /// step.03 - Management - Dependency (Co-Actor)
+
+    # actor(1)                     
+        . id:                       "ACTR_plug_V00.04"
+        . default:                  "TRUE"
+        . alias:                    "plug"
+
+
+
+    /// step.04 - Management - Dependency (kernels)
+	
+    # kernel(1)                     
+		. id:                       "react"
+		. ver:						"19.02.00"
+		. type:						"exe"
+		. default:                  "TRUE"
+		. alias:                    "react"
+
+    # kernel(2)                     
+		. id:                       "absman"
+		. ver:						"V00.04"
+		. type:						".tsx"
+		. default:                  "TRUE"
+		. alias:                    "absMan"
+
+    /// step.05 - Management - Dependency (Widgets)
+
+    # widget(1)                     
+		. id:                       "text"
+		. ver:						"V00.04"
+		. default:                  "TRUE"
+		. alias:                    "text"
+
+
+    # widget(2)                     
+		. id:                       "icon"
+		. ver:						"V00.04"
+		. default:                  "TRUE"
+		. alias:                    "icon"
+
+    # widget(3)                     
+		. id:                       "image"
+		. ver:						"V00.04"
+		. default:                  "TRUE"
+		. alias:                    "image"
+
+    # widget(4)                     
+		. id:                       "video"
+		. ver:						"V00.04"
+		. default:                  "TRUE"
+		. alias:                    "video"
+
+
+    # widget(5)                     
+		. id:                       "square"
+		. ver:						"V00.04"
+		. default:                  "TRUE"
+		. alias:                    "square"
+
+    # widget(6)                     
+		. id:                       "polygon"
+		. ver:						"V00.04"
+		. default:                  "TRUE"
+		. alias:                    "polygon"
+
+
+    # widget(7)                     
+		. id:                       "ellipse"
+		. ver:						"V00.04"
+		. default:                  "TRUE"
+		. alias:                    "ellipse"
+
+
+    # widget(8)                     
+		. id:                       "star"
+		. ver:						"V00.04"
+		. default:                  "TRUE"
+		. alias:                    "star"
+
+
+
+
+
+
+
+    /// step.06 - Management - Dependency (Themes)
+
+    # theme(1)                     
+		. id:                       "popcorn"
+		. ver:						"V00.04
+		. default:                  "TRUE"
+		. alias:                    "popcorn"
+
+    # theme(2)                     
+		. id:                       "nightwish"
+		. ver:						"V00.04
+		. default:                  "TRUE"
+		. alias:                    "nightwish"
+
+
+
+
+
+
+-->
+
+
+>>> LOGIC
+
+
+# geo															/// Geometric Attrib.
+
+	. baseXCoord
+	. baseYCoord
+	. widthBody1
+	. heightBody1
+
+	. deltaXCoord2
+	. deltaYCoord2
+	. widthBody2
+	. heightBody2
+
+	. deltaXCoord3
+	. deltaYCoord3
+	. widthBody3
+	. heightBody3
+
+	. iconXCoord()
+	. iconYCoord()
+	. iconRedius()
+	
+
+
+# log															/// Logical Attrib.
+
+	.iconUrl()
+	.iconTitle()
+	.iconImage():/conf /reconf				"def.value"
+
+
+
+
+# style															/// Style Attrib.
+	. bgCollor:					"@(@this.#them(1))_V00.04.#colors.bgCollor"
+	.
+
+
+
+
+
+
+
+
+
+-->
+
+
+
+>>> BODY
+
+	@square(1)
+	
+		# geo
+			. baseXCoord
+			. baseYCoord
+			. widthBody1
+			. heightBody1
+
+		# style
+			.selected
+		
+
+
+	@WIDG_dropdown(1)
+
+		# geo															/// Geometric Attrib.
+
+			. baseXCoord
+			. baseYCoord
+			. widthBody1
+			. heightBody1
+
+		# style
+			.selected
+		
+		# action
+			.open
+			.collaps
+			.
+		
+		
+		# event
+			.onclick
+			.hover
+			.textenter
+
+
+
+
+	@WIDG_mosaic
+		.cell (c:3,r) {count: c+r-1; ....)
+		.  . image ...
+		.  . text ....
+		.  . icon  ...
+	
+	@WIDG_grid
+		.cell (1,1)
+		.  . image
+		.cell (1,2)
+		.  . Text
+		
+
+	@COMP_id
+
+		.# geo															/// Geometric Attrib.
+
+		.	. baseXCoord
+		.	. baseYCoord
+		.	. widthBody1
+		.	. heightBody1
+
+		.	. deltaXCoord2
+		.	. deltaYCoord2
+		.	. widthBody2
+		.	. heightBody2
+
+		.	. deltaXCoord3
+		.	. deltaYCoord3
+			. widthBody3
+			. heightBody3
+
+			. iconXCoord()
+			. iconYCoord()
+			. iconRedius()
+			
+
+
+		.# log															/// Logical Attrib.
+
+		.	.iconUrl()
+		.	.iconTitle()
+		.	.iconImage():/conf /reconf				"def.value"
+
+
+
+
+		.# style															/// Style Attrib.
+		.	. bgCollor:					"@(@this.#them(1))_V00.04.#colors.bgCollor"
+		.	.
+
+
+
+
+
+
+
+
+
+-->
+
+
+---

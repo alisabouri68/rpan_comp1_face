@@ -1,0 +1,42 @@
+
+
+
+>sections {
+    >section{
+        >id: "ID" 
+        >rem: " remark"
+        >serial: "1"
+    }
+    >section    
+        >id: "Logic" 
+        >rem: " remark"
+        >serial: "3"
+
+    >section    
+        >id: "Mngt" 
+        >rem: " remark"
+        >serial: "32"
+}
+
+
+
+>packet (meta)
+    > section: "ID"
+    > id: "id"
+    > title: "Title"
+
+
+
+
+
+
+
+
+
+
+>packet (gvar1)
+    > gvar: "TRUE"
+    > section: "ID"
+    > id: "id"
+    > title: "Title"
+

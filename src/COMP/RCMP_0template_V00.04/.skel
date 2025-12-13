@@ -1,0 +1,74 @@
+---glan11
+
+///   Template for all .skell for RCMPs
+
+/// ---------------------------------------
+/// model:              RCMP_template_V00.04
+/// last update:        D2025.08.11
+/// by:                 APPS.68
+/// ---------------------------------------
+
+
+
+>>> ID
+
+	/// Step 1 - Meta Define
+
+	# meta 										
+
+		. genix-id:			"compID"				/// mandatory - Geneix ID
+		. genix-title:		"Component Title"		/// optional - default=id
+		. genix-version:	"V00.04"				/// same as origin model version 
+		. genix-scat		"RCMP"					/// Geneix SCAT is the same as the model it is building from	
+
+		. genix-lastUpgrade	"D2025.08.11"
+		. genix-developer	"APPS68"
+		
+		. bioModel-id:		"COMP"					/// Original Bio-Model
+		. bioModel-ver:		"V00.04"				/// 
+		. genix-rem:		"template for all RCOM Skeletone"						
+
+-->
+
+
+>>> MNGT
+
+	@ builder (1)
+		.#packet1 
+		.	. field112
+		.$build-asst-1 -par: "@this.#builder.field112" -opt {}
+		.$build-asst-2 -par: -opt { }
+
+
+
+-->
+
+>>> Body
+
+
+	/// Step.02 - List of Assets (only dynamic asset in V00.04)
+
+	# asset (1)
+	.id:				".schm"					/// Scheme File for COMP
+	.url:				"/"
+	.dynamic:			"FALSE"
+
+	# asset (2)
+	.id:				".skel"					/// Skeletone for RCMPs
+	.url:				"/"
+	.dynamic:			"FALSE"
+
+	# asset (3)
+	.id:				"index.tsx"				/// comment
+	.url:				"/"
+	.dynamic:			"FALSE"
+
+
+	/// Step.03 - No Capsule allowed inside the Components
+
+
+
+-->
+
+
+---

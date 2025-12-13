@@ -1,0 +1,190 @@
+---glan11
+
+>>> ID															//? Defining Actor
+
+    /// step.01 -  Complete Meta Data
+
+    # meta
+        . model_id:				"actorID"
+        . model_title:			"Actor Title"
+        . model_version:		"V00.04"
+        . model_lastUpgrade:	"D2025.10.04"	      			/// use the header date
+        . model_owner			"apps00"
+
+        . model_type			"Instant"	      							
+        . origin_model			"ACTR"							/// Actor Mutage Model
+        . origin_model_Ver		"V00.04"
+        . model_rem				"Remarks here ... "	
+
+	/// Objectives:
+
+	///	1- Main Task for this Actor
+
+	///	2-
+
+	///	3-
+
+
+
+-->
+
+
+>>> MNGT
+
+    /// step.02 -  Management - Render
+
+    # render(1)                                                 /// description
+        . scat:                     "NACT"                      /// description
+        . langBase:                 "node"                      /// description
+		. universal-url:			"gRepo/ACTR/...."			/// 
+
+
+    /// step.03 - Management - Dependency (kernels)
+
+    # kernel(1)                     
+        . id:                       "express"
+        . default:                  false
+        . named:                    ["Express", "Request", "Response"]
+
+    # kernel(2)                     
+        . id:                       "express"
+        . default:                  true
+
+
+
+    /// step.04 - Management Dependencies (co-act)
+
+    # coact(1)                     
+        . id:                       "@ACTR_dynaman"
+        . default:                  true
+        . alias:                    "DyanMan"
+
+    # coact(2)                     
+        . id:                       "@ACTR_panelman"
+        . default:                  true
+        . alias:                    "PanelMan"
+
+    # coact(3)                     
+        . id:                       "@ACTR_logman"
+        . default:                  true
+        . alias:                    "Logman"
+
+    # coact(4)                     
+        . id:                       "@ACTR_plug"
+        . default:                  true
+        . alias:                    "Plug"
+
+-->
+
+
+>>> LOGIC
+
+    /// Step.05  - Envi Variable (only in ACTRs, Comps , XApps)
+
+    # gvar(1)                       
+        . id:                       "app"
+        . value:                    null
+
+
+
+
+    /// Step.06 - Local Variable Define
+
+    # mvar(1)                       
+        . id:                       "varset1"
+
+		.field(1)
+		.  . id 					"f11"
+		.  . value:					"v1"
+		.  . dim:					"!STR"
+		
+
+
+    # mvar(2)                       
+        . id:                       "varset2"
+
+		.field(1)
+		.  . id 					"f21"
+		.  . value:					"v1"
+		.  . dim:					"!STR"
+		
+
+
+
+
+
+
+    /// step.07 - Script List
+	
+
+
+    /// Script Group 1:  Default Scripts 
+
+
+	$ init ()					/// this is the basic initialization for dyna ecosystem
+								/// sequence of task should be provided here
+								/// seq.01 :
+								/// seq.02 :
+
+	$ help ()					/// Print information about this Actor
+
+	$ scriptList ()		    	/// json format - list of scrip-id
+
+	$ gvarList ()				/// list gvar
+
+	$ signature (script-id)		/// json format - signature of a scrip-id
+	
+	S gvarinfo (gvarid)			/// json format - show info about a gvarId
+
+	$ test ()					/// functional test for all the scripts
+
+	$ config()                                                   		/// Initializes the Express application
+
+	$ generalSetup()                                           		    /// Configures middleware and routes
+
+	$ install									/// only for linux 
+
+	$ new
+
+	$ version
+
+	$ dependancyCheck	
+
+	$ dependancyInstall	
+
+	$ publish 	
+
+	$ get   		
+
+	$ watch							
+
+	$ read
+
+	$ write
+
+	$ reset	
+
+
+
+
+
+	/// Script Group.02 - Title
+
+
+    $ script()                                 /// Description
+
+
+
+
+	/// Script Group.03 - Title
+
+
+    $ script()                                 /// Description
+
+
+
+
+
+-->
+
+---

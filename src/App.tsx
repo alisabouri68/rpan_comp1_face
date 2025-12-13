@@ -1,29 +1,42 @@
-import { HelmetProvider } from "react-helmet-async";
-import { DynamicRouter } from "./ROUTS/dynamicRouter";
-import { DynaMan } from "./ACTR/RACT_dynaman_V00.04";
-import { useEffect } from "react";
-import DynaCtrl from "./PLAY/RPLAY_dynactrl_V00.04/index";
-function App() {
-  useEffect(() => {
-    const unsubscribe = DynaMan.subscribe((state) => {
-      console.log("Dyna changed:", state);
-      console.log("App mounted");
-      console.log("DynaMan =", DynaMan);
-      console.log("DynaMan.getState() =", DynaMan.getState());
-    });
+import { Suspense, useEffect } from 'react'
+import { RouterProvider } from 'react-router-dom'
+import router from 'ROUT'
+import ClockLoader from 'react-spinners/ClockLoader'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { Provider } from 'react-redux'
+import { store } from 'RDUX/store'
+import { createTheme, ThemeProvider, theme } from 'flowbite-react'
+function App () {
+  // Create a client
+  const queryClient = new QueryClient()
 
-    return () => unsubscribe(); // جلوگیری از memory leak
-  }, []);
+  const customTheme = createTheme(theme)
 
   return (
-    <>
-      <HelmetProvider>
-        <DynaCtrl>
-          <DynamicRouter />
-        </DynaCtrl>
-      </HelmetProvider>
-    </>
-  );
+    <Suspense
+      fallback={
+        <div className='w-screen h-screen flex items-center justify-center'>
+          <ClockLoader
+            color={'blue'}
+            // loading={true}
+            size={50}
+            aria-label='Loading Spinner'
+            data-testid='loader'
+          />
+        </div>
+      }
+    >
+      <Provider store={store}>
+        <QueryClientProvider client={queryClient}>
+          <ThemeProvider theme={customTheme}>
+            <RouterProvider router={router} />
+          </ThemeProvider>
+          <ReactQueryDevtools initialIsOpen={false} />
+        </QueryClientProvider>
+      </Provider>
+    </Suspense>
+  )
 }
 
-export default App;
+export default App

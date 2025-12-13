@@ -1,0 +1,17 @@
+{
+  "head": {
+    "id": "absModelID",
+    "title": "abs Model Title",
+    "type": "SCHM",
+    "ver": "V00.04",
+    "rem": "remarks ... ",
+    "create": "D2025.08.06"
+  },
+  "sections": {},
+  "absbody": {
+    "#meta": "",
+    "#packet": "",
+    "#script": "",
+    "@": ""
+  }
+}

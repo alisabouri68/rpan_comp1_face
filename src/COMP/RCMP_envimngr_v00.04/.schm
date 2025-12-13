@@ -1,0 +1,118 @@
+---glan11
+
+
+
+/// ---------------------------------------
+/// model:              COMP_button_V00.04
+/// last update:        D2025.09.08
+/// by:                 APPS.68
+/// ---------------------------------------
+
+
+
+
+
+>>> ID															//? Definition for COMP
+
+    /// step.01 -  Complete Meta Data
+
+    # meta
+        . model_id:					"RCMP_button_V00.04"
+        . model_title:				"Button"
+        . model_version:			"V00.04"
+        . model_lastUpgrade:		"D2025.09.08"				/// use the header date
+        . model_owner				"APPS.68"
+
+        . model_type				"Instant"
+        . origin_model				"COMP"						/// Component Mutage Model
+        . origin_model_Ver			"00.04"
+        . model_rem					"Component Remarks here ... "	
+
+	/// Objectives:
+
+	///	1- Provide a Unified Interaction Element
+
+	///	2-Support Multiple Visual Variants
+
+	///	3-Adapt to Multiple Sizes & Layouts
+	
+	///	4-Integrate Iconography
+	
+	///	5-Handle Loading & Disabled States
+
+	///	6-Support Navigation & Actions
+
+
+
+
+
+
+-->
+
+
+
+>>> MNG
+
+
+	/// step.02 -  Management - Render
+
+	# render(1)													//? React Render Mngt.
+		. scat:						"RCMP"						/// React Template
+		. langBase:					"react"						/// description
+
+
+	# render(2)							 						//? Reference Render Mngt.
+		. scat:						"LITE"						/// Litrature Template
+		. langBase:					"reachtex"					/// description
+
+
+    /// step.03 - Management - Dependency (Co-Actor)
+
+
+
+
+    /// step.04 - Management - Dependency (kernels)
+	
+    # kernel(1)                     
+		. id:                       "react"
+		. ver:						"19.02.00"
+		. type:						"exe"
+		. default:                  "TRUE"
+		. alias:                    "react"
+
+    /// step.05 - Management - Dependency (Widgets)
+
+    # widget(1)                     
+		. id:                       "text"
+		. ver:						"V00.04"
+		. default:                  "TRUE"
+		. alias:                    "text"
+
+
+    # widget(2)                     
+		. id:                       "icon"
+		. ver:						"V00.04"
+		. default:                  "TRUE"
+		. alias:                    "icon"
+
+    
+    /// step.06 - Management - Dependency (Themes)
+
+    # theme(1)                     
+		. id:                       "popcorn"
+		. ver:						"V00.04
+		. default:                  "TRUE"
+		. alias:                    "popcorn"
+
+    # theme(2)                     
+		. id:                       "nightwish"
+		. ver:						"V00.04
+		. default:                  "TRUE"
+		. alias:                    "nightwish"
+
+
+
+
+
+
+-->

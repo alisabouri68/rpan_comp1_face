@@ -1,0 +1,23 @@
+---glan11
+
+
+///   Template for all .skell
+
+# meta 										
+
+	. genix-id:			RACT_absMan	/// mandatory - Geneix ID is the same as skel-ID 
+	. genix-title:		"RACT_absMan"		/// optional - default=id
+	. genix-version:	V00.03			        /// same as origin model version 
+	. genix-lastUpgrade	D2024.09.25
+	. genix-developer	APPS48
+
+	. genix-scat		RACT			        /// Geneix SCAT is the same as the model it is building from	
+	. downloadURL		genoRepo		        /// global download url for Genix Artifact Folder ".gnix" file
+	. uploadImageURL	genoHub			        /// global url for upload the built image / package
+
+	. bioModel-id:		KRNL			        /// Original Bio-Model
+	. bioModel-ver:		V00.03			        /// 
+	. genix-desc		""			            /// def: ""
+		
+
+---

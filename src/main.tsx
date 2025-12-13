@@ -1,14 +1,15 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./ASST/CSS/index.css";
-import App from "./App.tsx";
-import { Provider } from "react-redux";
-import { dynaStore } from "./RDUX/dynamanContext/dynaStore.ts";
+import App from "./App";
+
+import "./Asset/css/index.css";
+import "react-loading-skeleton/dist/skeleton.css";
+import "react-toastify/dist/ReactToastify.css";
+import "react-grid-layout/css/styles.css";
+import "react-resizable/css/styles.css";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <Provider store={dynaStore}>
-      <App />
-    </Provider>
+    <App />
   </StrictMode>
 );

@@ -1,63 +1,125 @@
-import { Suspense, lazy, useEffect, useState, type ReactNode } from "react";
-import { useMatches } from "react-router-dom";
-import useDeviceDetection from "./g1";
-import PageLoading from "../../COMP/RCOMP_pageLoadinng_V00.04";
- // Lazy imports برای تمام لی‌آوت‌ها
-  const MobileStatic = lazy(() => import("../../LAYOUT/RLAYOT_mobileStatc_V00.04"));
-  const DesktopStatic = lazy(() => import("../../LAYOUT/RLAYOT_desctopStatic_V00.04"));
-  const MobileMono = lazy(() => import("../../LAYOUT/RLAYOT_mobileMono_V00.04"));
-  const DesktopMono = lazy(() => import("../../LAYOUT/RLAYOT_desctopMono_V00.04"));
-  const MobileDeep = lazy(() => import("../../LAYOUT/RLAYOT_mobileDeep_V00.04"));
-  const DesktopDeep = lazy(() => import("../../LAYOUT/RLAYOT_desctopDeep_V00.04"));
+import { Suspense, lazy, type ReactNode } from 'react'
+import { useParams } from 'react-router-dom'
 
-  type MatchWithLayout = {
-  handle?: {
-    layout?: "static" | "mono" | "deep";
-  };
-};
-// Suspense wrapper برای لیزی لودینگ
-const SuspenseWrapper = ({ children }: { children: ReactNode }) => (
-  <Suspense fallback={<PageLoading />}>{children}</Suspense>
-);
+import useDeviceDetection from './g1'
+import PageLoading from '../../COMP/RCOMP_pageLoadinng_V00.04'
 
+/* -------------------------------------------------------------------------- */
+/*                              Lazy Layout Imports                            */
+/* -------------------------------------------------------------------------- */
+/**
+ * تمام layoutها به‌صورت lazy import شده‌اند
+ * تا حجم initial bundle کاهش پیدا کند
+ */
+const MobileStatic = lazy(
+  () => import('../../LAYOUT/RLAYOT_mobileStatc_V00.04')
+)
+const DesktopStatic = lazy(
+  () => import('../../LAYOUT/RLAYOT_desctopStatic_V00.04')
+)
+
+const MobileMono = lazy(() => import('../../LAYOUT/RLAYOT_mobileMono_V00.04'))
+const DesktopMono = lazy(() => import('../../LAYOUT/RLAYOT_desctopMono_V00.04'))
+
+const MobileDeep = lazy(() => import('../../LAYOUT/RLAYOT_mobileDeep_V00.04'))
+const DesktopDeep = lazy(() => import('../../LAYOUT/RLAYOT_desctopDeep_V00.04'))
+
+/**
+ * محتوای اصلی صفحه (Dashboard / Smart Component)
+ */
+const MonoDash = lazy(() => import('CONS/monoDash'))
+
+/* -------------------------------------------------------------------------- */
+/*                                   Types                                    */
+/* -------------------------------------------------------------------------- */
+/**
+ * layoutهای مجاز که از URL پشتیبانی می‌شوند
+ */
+const LAYOUTS = ['static', 'mono', 'deep'] as const
+type LayoutType = typeof LAYOUTS[number]
+
+/* -------------------------------------------------------------------------- */
+/*                              DeviceManager                                  */
+/* -------------------------------------------------------------------------- */
+/**
+ * DeviceManager
+ *
+ * مسئولیت‌ها:
+ * - تشخیص نوع دستگاه (mobile / desktop)
+ * - دریافت layout از URL (useParams)
+ * - validate کردن layout
+ * - انتخاب layout مناسب
+ * - lazy loading layout و content با Suspense
+ *
+ * این کامپوننت به‌عنوان layout root در Router استفاده می‌شود
+ */
 const DeviceManager = () => {
-  const { isMobile } = useDeviceDetection();
- const matches = useMatches() as MatchWithLayout[];
-  const [isClient, setIsClient] = useState(false);
+  /* ------------------------------------------------------------------------ */
+  /*                               Route Params                                */
+  /* ------------------------------------------------------------------------ */
+  /**
+   * دریافت پارامترهای URL
+   * path:
+   * view/smartComp/:layoutName/:serviceName/:sheetName?/:id?
+   */
+  const { layoutName, serviceName, sheetName, id } = useParams()
 
-  // گرفتن layoutType از آخرین match یا fallback
-  const layoutType: "static" | "mono" | "deep" =
-    matches[matches.length - 1]?.handle?.layout || "static";
-console.log(layoutType)
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
+  /* ------------------------------------------------------------------------ */
+  /*                           Device Detection                                */
+  /* ------------------------------------------------------------------------ */
+  /**
+   * تشخیص موبایل یا دسکتاپ
+   */
+  const { isMobile } = useDeviceDetection()
 
-  if (!isClient) return <PageLoading />;
+  /* ------------------------------------------------------------------------ */
+  /*                         Layout Type Resolution                             */
+  /* ------------------------------------------------------------------------ */
+  /**
+   * validate کردن layout دریافتی از URL
+   * اگر معتبر نبود، fallback به 'static'
+   */
+  const layoutType: LayoutType = LAYOUTS.includes(layoutName as LayoutType)
+    ? (layoutName as LayoutType)
+    : 'static'
 
-  // همه لی‌آوت‌ها lazy import شده و return می‌شوند
-  const renderLayout = () => {
-    switch (layoutType) {
-      case "static":
-        return isMobile
-          ? <SuspenseWrapper><MobileStatic /></SuspenseWrapper>
-          : <SuspenseWrapper><DesktopStatic /></SuspenseWrapper>;
-      case "mono":
-        return isMobile
-          ? <SuspenseWrapper><MobileMono /></SuspenseWrapper>
-          : <SuspenseWrapper><DesktopMono /></SuspenseWrapper>;
-      case "deep":
-        return isMobile
-          ? <SuspenseWrapper><MobileDeep /></SuspenseWrapper>
-          : <SuspenseWrapper><DesktopDeep /></SuspenseWrapper>;
-      default:
-        return null;
-    }
-  };
+  /* ------------------------------------------------------------------------ */
+  /*                           Layout Mapping                                   */
+  /* ------------------------------------------------------------------------ */
+  /**
+   * نگاشت layoutها بر اساس نوع دستگاه
+   */
+  const layouts = isMobile
+    ? {
+        static: MobileStatic,
+        mono: MobileMono,
+        deep: MobileDeep
+      }
+    : {
+        static: DesktopStatic,
+        mono: DesktopMono,
+        deep: DesktopDeep
+      }
 
- 
+  /**
+   * layout انتخاب‌شده نهایی
+   */
+  const SelectedLayout = layouts[layoutType]
 
-  return renderLayout();
-};
+  /* ------------------------------------------------------------------------ */
+  /*                                 Render                                    */
+  /* ------------------------------------------------------------------------ */
+  /**
+   * Suspense برای lazy layout و content
+   * key باعث remount صحیح هنگام تغییر layout می‌شود
+   */
+  return (
+    <Suspense fallback={<PageLoading />}>
+      <SelectedLayout key={layoutType}>
+        <MonoDash />
+      </SelectedLayout>
+    </Suspense>
+  )
+}
 
-export default DeviceManager;
+export default DeviceManager

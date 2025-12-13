@@ -1,0 +1,28 @@
+{
+  "head": {
+    "model": "COMP_button_V00.04",
+    "by": "APPS.68",
+    "last update": "D2025.08.09"
+  },
+  "sections": {
+    "id": {
+      "meta": {
+        "id": "RCMP_button",
+        "title": "Component Button - React Version",
+        "type": "SCHM",
+        "ver": "00.04",
+        "rem": "",
+        "create": "D2025.08.09"
+      }
+    },
+    "MNGT": {},
+    "LOGIC": {
+      "geo": {
+      },
+      "log": {
+      },
+      "style": {  }
+    },
+    "BODY": {}
+  }
+}

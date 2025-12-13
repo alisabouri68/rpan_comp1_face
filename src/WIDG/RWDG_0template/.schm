@@ -1,0 +1,74 @@
+
+---glan11
+
+
+>>> ID
+
+   # meta
+    
+    . id:   "button"
+
+
+
+
+-->
+
+
+>>> MNGR
+
+
+   # kerneldep(1)
+
+    . kernelID:                     "flowbite-react"
+    . kernelEquivalent:             "FlowbiteButton"
+
+
+
+
+
+-->
+
+
+>>> LOGIC-SEC
+
+
+   # geo
+
+    . width
+    . height
+    . radius
+    . angle
+    . width2
+
+
+
+   # logic
+
+    . 
+
+
+   # style
+
+    . icon
+
+    . bgimage
+
+
+
+   # method
+
+
+
+
+
+   # event
+
+
+-->
+
+
+
+
+
+
+---

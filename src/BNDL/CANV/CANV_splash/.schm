@@ -1,0 +1,18 @@
+---glan11
+
+>>> Def-CANV				//? Defining Canvas
+  # meta
+	. model-id:				CANV_compMngt
+	. model-title:			"CANV_compMngt"
+	. model-version:		V00.04			/// 
+	. model-lastUpgrade:	D2024.10.20		      					
+	. model-owner			Apps48
+
+	. model-type			Mutage	      							
+	. origin-model			MODL								
+	. origin-model-Ver		00.00
+	. model-desc			Description	     	
+
+->>
+
+---
