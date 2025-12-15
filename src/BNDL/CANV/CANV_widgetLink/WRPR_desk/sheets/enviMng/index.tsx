@@ -1,7 +1,10 @@
-
-function index() {
+import AdvancedInputWidgetTest from 'COMP/RCOMP_test'
+function index () {
   return (
-    <div>index</div>
+    <div className='flex w-full h-full flex-col items-center justify-center gap-4 p-4 bg-gray-100 '>
+
+<AdvancedInputWidgetTest />
+    </div>
   )
 }
 
